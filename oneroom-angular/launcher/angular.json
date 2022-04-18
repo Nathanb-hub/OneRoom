@@ -1670,6 +1670,134 @@
           }
         }
       }
+    },
+    "locker": {
+      "root": "projects/locker/",
+      "sourceRoot": "projects/locker/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/locker",
+            "index": "projects/locker/src/index.html",
+            "main": "projects/locker/src/main.ts",
+            "polyfills": "projects/locker/src/polyfills.ts",
+            "tsConfig": "projects/locker/tsconfig.app.json",
+            "assets": [
+              "projects/locker/src/favicon.ico",
+              "projects/locker/src/assets"
+            ],
+            "styles": [
+              "projects/locker/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/locker/src/environments/environment.ts",
+                  "with": "projects/locker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "locker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "locker:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "locker:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/locker/src/test.ts",
+            "polyfills": "projects/locker/src/polyfills.ts",
+            "tsConfig": "projects/locker/tsconfig.spec.json",
+            "karmaConfig": "projects/locker/karma.conf.js",
+            "styles": [
+              "projects/locker/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/locker/src/favicon.ico",
+              "projects/locker/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/locker/tsconfig.app.json",
+              "projects/locker/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "locker-e2e": {
+      "root": "projects/locker-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/locker-e2e/protractor.conf.js",
+            "devServerTarget": "locker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "locker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/locker-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "launcher"

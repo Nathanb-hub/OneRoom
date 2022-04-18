@@ -46,6 +46,7 @@ import {
 } from '@angular/material';
 import { DescriptionTeamModalComponent } from './description-team-modal/description-team-modal.component';
 import { BrowserAppSharedModule } from 'projects/browser/src/app/app.module';
+import { LockerSharedModule } from 'projects/locker/src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { BrowserAppSharedModule } from 'projects/browser/src/app/app.module';
     RadioSharedModule,
     ClockAppSharedModule,
     BrowserAppSharedModule,
+    LockerSharedModule,
     // other
     BrowserAnimationsModule,
     MatButtonModule,

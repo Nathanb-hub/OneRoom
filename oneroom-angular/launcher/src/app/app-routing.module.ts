@@ -15,6 +15,7 @@ import { BatterySharedModule } from 'projects/battery/src/app/app.module';
 import { RadioSharedModule } from 'projects/radio/src/app/app.module';
 import { ClockAppSharedModule } from 'projects/clock/src/app/app.module';
 import { BrowserAppSharedModule } from 'projects/browser/src/app/app.module';
+import { LockerSharedModule } from 'projects/locker/src/app/app.module';
 
 const routes: Routes = [
   {path: 'scanner',
@@ -39,6 +40,8 @@ const routes: Routes = [
     loadChildren: '../../projects/clock/src/app/app.module#ClockAppSharedModule'},
   { path: 'browser',
     loadChildren: '../../projects/browser/src/app/app.module#BrowserAppSharedModule'},
+  { path: 'locker',
+    loadChildren: '../../projects/locker/src/app/app.module#LockerSharedModule'},
   { path: 'nav', component: NavComponent },
   { path: 'lock', component: LockscreenComponent },
   { path: 'settings', component : SettingsComponent},
@@ -59,7 +62,8 @@ const routes: Routes = [
     BatterySharedModule.forRoot(),
     RadioSharedModule.forRoot(),
     ClockAppSharedModule.forRoot(),
-    BrowserAppSharedModule.forRoot()
+    BrowserAppSharedModule.forRoot(),
+    LockerSharedModule.forRoot()
   ],
   exports: [RouterModule]
 })
