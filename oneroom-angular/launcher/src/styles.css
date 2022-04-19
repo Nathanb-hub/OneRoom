@@ -859,3 +859,26 @@ svg {
     transform: rotate(360deg);
   }
 }
+
+
+/* Locker V2 icon*/
+#lock-animation{
+  
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: unlocking 1s linear alternate infinite;
+  animation: unlocking 1s linear alternate infinite;
+}
+
+@keyframes unlocking {
+  0% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  100% {
+    height:0px;
+    -webkit-transform: scaleY(0.5);
+    transform:scaleY(0.5);
+  }
+}
