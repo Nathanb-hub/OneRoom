@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using oneroom_api.data;
 using System;
-using Microsoft.AspNetCore.SignalR;
 using oneroom_api.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace oneroom_api.Controllers
 {
@@ -19,7 +19,8 @@ namespace oneroom_api.Controllers
         private readonly OneRoomContext _context;
         private readonly IHubContext<OneHub, IActionClient> _hubClients;
 
-        public ChallengesController(OneRoomContext context, IHubContext<OneHub, IActionClient> hubClients)
+        public ChallengesController(OneRoomContext context, IHubContext<OneHub, IActionClient> hubClients
+)
         {
             _context = context;
             _hubClients = hubClients;
@@ -27,11 +28,20 @@ namespace oneroom_api.Controllers
 
         // GET: api/Challenges
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(Task<ActionResult<IEnumerable<ChallengeDto>>>))]
+        //[ProducesResponseType(200, Type = typeof(Task<ActionResult<IEnumerable<ChallengeDto>>>))]
         public async Task<ActionResult<IEnumerable<ChallengeDto>>> GetChallenges()
         {
-            return await _context.Challenges.Select(c => c.ToDto())
+            //if (!ChallengeExists(0)|| !ChallengeExists(1)) return NotFound("There is no challenges");
+
+            /*return await _context.Challenges.ToListAsync();*/
+            List<ChallengeDto> challenges = await _context.Challenges.Select(c => c.ToDto())
                                             .ToListAsync();
+
+            if (challenges == null)
+            {
+                return NotFound();
+            }
+            return challenges;
         }
 
         // GET: api/Scenarios/5/Challenges
@@ -150,7 +160,7 @@ namespace oneroom_api.Controllers
             }
 
             await _context.SaveChangesAsync();
-            await _hubClients.Clients.Group(GameId.ToString()).HasCompletedChallenge(TeamId, ChallengeId);
+            //await _hubClients.Clients.Group(GameId.ToString()).HasCompletedChallenge(TeamId, ChallengeId);
 
             return NoContent();
         }

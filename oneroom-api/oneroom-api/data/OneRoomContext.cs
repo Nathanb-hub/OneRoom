@@ -17,6 +17,7 @@ namespace oneroom_api.data
         public OneRoomContext(DbContextOptions<OneRoomContext> options)
             : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

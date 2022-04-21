@@ -30,7 +30,8 @@ namespace oneroom_api
 
             // Enable signalR
             services.AddSignalR().AddAzureSignalR(Configuration.GetConnectionString("AzureSignalR"));
-            
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+
             // Register the Swagger services
             //services.AddSwaggerDocument();
 
@@ -56,9 +57,10 @@ namespace oneroom_api
                 "http://localhost:4201", 
                 "http://localhost:4202", 
                 "http://localhost:4203",
-                "https://waoneroomlauncher.azurewebsites.net",
-                "https://waoneroomdashboard.azurewebsites.net",
-                "https://waoneroomleaderboard.azurewebsites.net")
+                "https://dashboard-oneroom-v2.azurewebsites.net",
+                "https://launcher-oneroom-v2.azurewebsites.net",
+                "https://leaderboard-oneroom-v2.azurewebsites.net",
+                "https://register-oneroom-v2.azurewebsites.net")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());

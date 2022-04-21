@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>oneroom_api</RootNamespace>
     <UserSecretsId>71fb264a-e878-4e45-b31d-805f6b0f700d</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/4f686572-08bc-435f-a122-374f4d0573de/resourceGroups/rg_Oneroom_Student/providers/microsoft.insights/components/coordinateur-oneroom-v2</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,14 +14,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.3.0-preview" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.0.8" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NSwag.Core" Version="12.3.1" />
     <PackageReference Include="Twilio.AspNet.Core" Version="5.20.1" />
