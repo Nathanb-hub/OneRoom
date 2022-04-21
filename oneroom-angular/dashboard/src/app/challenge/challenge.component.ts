@@ -63,20 +63,24 @@ export class ChallengeComponent implements OnInit {
     this.challenge.answers = [];
     this.challenge.hints = [];
 
+    console.log("Init 1 ook");
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
         this.currentConfigKey = value;
         console.log('value changed to : ' + value);
+        console.log(this.challenge.appName);//undefined
         this.placeholderConfig = this.appPlaceholderConfig[this.challenge.appName];
         if (!this.placeholderConfig) {
           this.placeholderConfig = [];
         }
+
         return this.filter(value, this.placeholderConfig);
       })
     );
 
     this.refreshChallenges();
+
   }
 
   appSelected() {
@@ -140,10 +144,13 @@ export class ChallengeComponent implements OnInit {
   }
 
   refreshChallenges() {
+    console.log("Challenges services",this.challengeService.getChallenges());
     this.challengeService.getChallenges().subscribe((challenges) => {
         this.challenges = challenges;
+      
       },
       (err) => {
+        console.log("refresh challenges error");
         this.notifierService.notify( 'error', err.error );
       }
     );
