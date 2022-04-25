@@ -862,12 +862,16 @@ svg {
 
 
 /* Locker V2 icon*/
-#lock-animation{
+#locker-animation{
   
   -webkit-transform-origin: center;
   transform-origin: center;
   -webkit-animation: unlocking 1s linear alternate infinite;
   animation: unlocking 1s linear alternate infinite;
+}
+
+#locker-v2:hover .locker-animation{
+  fill: lightgrey;
 }
 
 @keyframes unlocking {

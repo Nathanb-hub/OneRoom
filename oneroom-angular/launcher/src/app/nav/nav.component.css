@@ -21,6 +21,12 @@
   background: lightgray;
   box-shadow: 1px 1px 5px black;
 }
+#locker-v2:hover, #locker-v2.hover #locker-animation{
+  fill: lightgray;
+}
+#locker-v2:not(:hover), #locker-v2.hover #locker-animation{
+  fill: white;
+}
 
 .launcher-app:active {
   background: darkgray;

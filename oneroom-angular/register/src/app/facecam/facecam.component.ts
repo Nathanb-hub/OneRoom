@@ -189,10 +189,10 @@ export class FacecamComponent implements OnInit, OnDestroy {
     this.notifierService.notify( 'info', 'Chargement des modèles');
 
     this.options = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.85});
-
-    await faceapi.loadSsdMobilenetv1Model('assets/models/').then(
-        async () => await faceapi.loadFaceLandmarkModel('assets/models/')
-        ).then( async () => await faceapi.loadFaceRecognitionModel('assets/models/')).then(
+    
+    await faceapi.loadSsdMobilenetv1Model('/assets/models').then(
+        async () => await faceapi.loadFaceLandmarkModel('/assets/models')
+        ).then( async () => await faceapi.loadFaceRecognitionModel('/assets/models')).then(
           async () => {
             this.modelsReady = true;
             this.notifierService.notify( 'info', 'Modèles prêt');
@@ -622,7 +622,7 @@ private saveUsers(user: User, face: Face) {
       const res$ = this.gameService.getStateGame(game.groupName);
       res$.subscribe(
         (state) => {
-          console.log(state);
+          console.log("State",state);
           if (state !== GameState.REGISTER) {
             this.stopCaptureStream();
             this.notifierService.notify( 'info', 'Enregistrement des participants désormais cloturé !');
