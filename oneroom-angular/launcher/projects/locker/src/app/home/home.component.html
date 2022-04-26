@@ -2,17 +2,17 @@
   <div>
       <mat-form-field #fieldInput  class="example-form-field" appearance="fill">
         <mat-label>Combinaison</mat-label>
-        <mat-hint [ngStyle]="{color: hintColor}">{{info}}</mat-hint>
-        <input  matInput type="text" maxlength ="4" [(ngModel)]="inputList">
-        <mat-icon matSuffix *ngIf="!valid">lock</mat-icon>
-        <mat-icon matSuffix *ngIf="valid">check_circle</mat-icon>
+        <mat-hint >{{info}}</mat-hint>
+        <input  matInput type="text" maxlength ="4" [(ngModel)]="inputList" >
+        <mat-icon id="animate-icon" class=""matSuffix *ngIf="!valid">lock</mat-icon>
+        <mat-icon matSuffix *ngIf="valid" color="primary" fill="blue">check_circle</mat-icon>
         
       </mat-form-field>
   </div>
   
   <div>
     <mat-grid-list class="grid" cols="3">
-      <mat-grid-tile *ngFor="let button of buttons;let i =index;" class="numbers"><button mat-button color="primary" (click)="addNumber(i+1)">{{i+1}}</button></mat-grid-tile>
+      <mat-grid-tile *ngFor="let button of buttons" class="numbers"><button mat-button color="primary" (click)="addNumber(button)">{{button}}</button></mat-grid-tile>
     </mat-grid-list>
   </div>
     

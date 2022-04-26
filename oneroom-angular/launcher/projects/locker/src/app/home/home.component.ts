@@ -1,14 +1,13 @@
-import { StringMapWithRename } from '@angular/compiler/src/compiler_facade_interface';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('fieldInput') inputField:MatFormFieldModule;
-  buttons:number[];
+
+  buttons:string[];
   inputList:string;
   combinaisons:string[];
   info :string;
@@ -16,10 +15,11 @@ export class HomeComponent implements OnInit {
   times:number[];
   i:number;
   valid:boolean;
+  isActive:boolean;
   constructor() { }
 
   ngOnInit() {
-    this.buttons  = [1,2,3,4,5,6,7,8,9,0,0,0];
+    this.buttons  = ["1","2","3","4","5","6","7","8","9","#","0","*"];
     this.info='';
     this.inputList='';
     this.combinaisons =[];
@@ -27,10 +27,11 @@ export class HomeComponent implements OnInit {
     this.buttonState=true;
     this.i=0;
     this.valid=false;
-    
   }
 
   addNumber(value:string){
+    //il faut supprimer la classe d'anilmation animate-icon
+    //
     if (this.inputList.length==4){
       this.Clear();
     }
@@ -40,23 +41,30 @@ export class HomeComponent implements OnInit {
     if(this.inputList.length==4){
       this.info='';
       if (this.inputList=='1234'){
-        console.log("Code correct");
-        // this.hintColor = 'green';
+        console.log("Code correct, ouverture du coffre ...");
+        this.ngOnInit();
         this.info='Code bon';
+        this.inputList ='1234';
         this.valid=true;
+        //Intégrer le service pour actionner l'aduino 
         
       }
       else{
         this.info='Code incorrect';
-        // this.hintColor = 'red';
-        //console.log(this.inputList);
+        // faire vibrer le cadenas 
+        setTimeout(()=>{
+          document.querySelector('#animate-icon').classList.remove('animate-icon');
+        },2000);
+        document.querySelector('#animate-icon').classList.add('animate-icon');
+        
+
+
         this.combinaisons.push(this.inputList);
-        //console.log(this.combinaisons);
+ 
         if(this.combinaisons.length ==3){
           this.combinaisons = [];
           this.buttonState=false;
           if (this.i>this.times.length-1){
-            //console.log("Veuillez attendre", this.times[this.i]/1000," sec");
             this.i=0;
           }
           this.info= "Veuillez attendre " +(this.times[this.i]/1000).toString()+" secondes";
@@ -67,13 +75,12 @@ export class HomeComponent implements OnInit {
 
     }
     else{
-      // this.hintColor="grey";
       this.info="Veuiller entrer un code de 4 caractères";
-      console.log(this.info);
     }
 
   }
   Clear(){
+    this.valid=false;
     this.inputList ='';
     this.info="";
   }

@@ -12,7 +12,9 @@
     width: 300px;
     height: 300px;
 }
-
+input{
+    color: indigo;
+}
 
 .numbers {
     background: white;
@@ -35,5 +37,25 @@
 }
 .action-buttons{
     position: absolute;
-    margin-top: 150px;
+    margin-top: 250px;
 }   
+
+
+.animate-icon {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation: shaking 0.1s linear alternate 10;
+    animation: shaking 0.1s linear alternate 10;
+  }
+  
+  @keyframes shaking {
+    0% {
+      -webkit-transform: rotate(-10deg);
+      transform: rotate(-10deg);
+    }
+  
+    100% {
+      -webkit-transform: rotate(10deg);
+      transform: rotate(10deg);
+    }
+  }
