@@ -51,7 +51,6 @@ export class HomeComponent implements OnInit {
       }
       else{
         this.info='Code incorrect';
-        // faire vibrer le cadenas 
         setTimeout(()=>{
           document.querySelector('#animate-icon').classList.remove('animate-icon');
         },2000);
