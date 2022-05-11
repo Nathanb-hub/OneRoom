@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   i:number;
   valid:boolean;
   isActive:boolean;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.buttons  = ["1","2","3","4","5","6","7","8","9","#","0","*"];
@@ -47,7 +48,16 @@ export class HomeComponent implements OnInit {
         this.inputList ='1234';
         this.valid=true;
         //Intégrer le service pour actionner l'aduino 
-        
+
+        //pour le kit azure
+        // this.http.get<any>('https://devkit-function.azurewebsites.net/api/devkit-state?action=set&state=1&key=userLED').subscribe(data => {
+        //   console.log(data);
+        // });
+        //pour l'arduino
+        this.http.get<any>('https://oneroom-lockerv2-api.azurewebsites.net/api/locker-state?action=set&state=1&key=SERVO').subscribe(data => {
+          console.log(data);
+        });
+
       }
       else{
         this.info='Code incorrect';

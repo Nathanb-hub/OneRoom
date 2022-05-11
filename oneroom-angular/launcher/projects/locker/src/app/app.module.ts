@@ -4,6 +4,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import {HttpClientModule} from '@angular/common/http';
+
 
 import {
   MatBottomSheetModule,
@@ -59,7 +61,8 @@ const arrProviders = [];
     MatSelectModule,
     MatDatepickerModule,
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   entryComponents: [
   ]
